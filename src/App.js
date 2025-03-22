@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  // Main data states
   const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [relations, setRelations] = useState([]);
@@ -299,31 +298,50 @@ function App() {
   const fileInputRef = useRef(null);
 
   return (
-      <div className="app-container">
-        <header className="app-header">
-          <div className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+  <div className="app-container">
+    <header className="app-header">
+      <div className="header-left">
+        <div className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
-          </div>
 
-          <h1>ToDo List</h1>
+              <div className="search-bar mobile-search">
+                <input
+                    type="text"
+                    placeholder="Rechercher..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
 
-          <div className="header-buttons">
-            <button onClick={() => fileInputRef.current.click()}>Importer</button>
-            <button onClick={exportData}>Exporter</button>
-            <button className="reset-btn" onClick={resetApp}>Reset</button>
-            <input
-                type="file"
-                ref={fileInputRef}
-                style={{ display: 'none' }}
-                accept=".json"
-                onChange={importData}
-            />
-          </div>
+                {categoryFilter && (
+                    <div className="active-filter">
+                      <span>{categories.find(cat => cat.id === categoryFilter)?.title}</span>
+                      <button onClick={() => setCategoryFilter(null)}>×</button>
+                    </div>
+                )}
+              </div>
+            </div>
+
+            <h1 className="desktop-title">ToDo List</h1>
+
+            <div className="header-buttons">
+              <button onClick={() => fileInputRef.current.click()}>Importer</button>
+              <button onClick={exportData}>Exporter</button>
+              <button className="reset-btn" onClick={resetApp}>Reset</button>
+              <input
+                  type="file"
+                  ref={fileInputRef}
+                  style={{display: 'none'}}
+                  accept=".json"
+                  onChange={importData}
+              />
+            </div>
         </header>
+
 
         <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
           <button className="mobile-menu-item" onClick={() => fileInputRef.current.click()}>Importer</button>
@@ -348,7 +366,7 @@ function App() {
               </button>
               <div
                   className="view-slider"
-                  style={{ transform: viewMode === 'completed' ? 'translateX(100%)' : 'translateX(0)' }}
+                  style={{transform: viewMode === 'completed' ? 'translateX(100%)' : 'translateX(0)'}}
               ></div>
             </div>
           </div>
@@ -358,19 +376,29 @@ function App() {
                 className="filter-btn"
                 onClick={() => setShowSortDropdown(!showSortDropdown)}
             >
-              Trier par {sortCriteria === 'title' ? 'titre' : sortCriteria === 'date_echeance' ? 'échéance' : 'création'} ▼
+              Trier
+              par {sortCriteria === 'title' ? 'titre' : sortCriteria === 'date_echeance' ? 'échéance' : 'création'} ▼
             </button>
 
             {showSortDropdown && (
                 <div className="sort-dropdown-container">
                   <div className="sort-dropdown">
-                    <button onClick={() => { setSortCriteria('title'); setShowSortDropdown(false); }}>
+                    <button onClick={() => {
+                      setSortCriteria('title');
+                      setShowSortDropdown(false);
+                    }}>
                       Titre
                     </button>
-                    <button onClick={() => { setSortCriteria('date_echeance'); setShowSortDropdown(false); }}>
+                    <button onClick={() => {
+                      setSortCriteria('date_echeance');
+                      setShowSortDropdown(false);
+                    }}>
                       Date d'échéance
                     </button>
-                    <button onClick={() => { setSortCriteria('date_creation'); setShowSortDropdown(false); }}>
+                    <button onClick={() => {
+                      setSortCriteria('date_creation');
+                      setShowSortDropdown(false);
+                    }}>
                       Date de création
                     </button>
                   </div>
@@ -443,7 +471,7 @@ function App() {
                                   <span
                                       key={category.id}
                                       className="category-tag"
-                                      style={{ backgroundColor: category.color }}
+                                      style={{backgroundColor: category.color}}
                                       onClick={(e) => {
                                         e.stopPropagation();
                                         setCategoryFilter(category.id);
@@ -525,8 +553,11 @@ function App() {
               <div className="modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
                   <h2>{modalType === 'task' ? 'Nouvelle tâche' : 'Nouvelle catégorie'}</h2>
-                  <button className="close-btn" onClick={() => setShowModal(false)}>×</button>
-                </div>
+                  <button className="close-btn" onClick={() => {
+                    const modal = document.querySelector('.modal');
+                    modal.style.animation = 'popOut 0.2s ease forwards';
+                    setTimeout(() => setShowModal(false), 200);
+                  }}>×</button></div>
 
                 {modalType === 'task' ? (
                     <form className="task-form" onSubmit={handleCreateTask}>
@@ -572,7 +603,7 @@ function App() {
                               <div
                                   key={category.id}
                                   className={`category-option ${newTask.categories.includes(category.id) ? 'selected' : ''}`}
-                                  style={{ backgroundColor: category.color }}
+                                  style={{backgroundColor: category.color}}
                                   onClick={() => toggleCategoryInNewTask(category.id)}
                               >
                                 {category.icon} {category.title}
@@ -609,7 +640,7 @@ function App() {
                               <div
                                   key={color}
                                   className={`color-option ${newCategory.color === color ? 'selected' : ''}`}
-                                  style={{ backgroundColor: color }}
+                                  style={{backgroundColor: color}}
                                   onClick={() => setNewCategory({...newCategory, color})}
                               />
                           ))}

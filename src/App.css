@@ -29,7 +29,7 @@ button {
 .app-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
 }
 
 /* Header styles */
@@ -37,15 +37,15 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #e1e4e8;
 }
 
 .app-header h1 {
   font-size: 32px;
   font-weight: 700;
   color: #2c3e50;
+  margin-right: auto;
 }
 
 .header-buttons {
@@ -67,6 +67,7 @@ button {
 .mobile-menu-button {
   display: none;
   z-index: 50;
+  align-content: center;
 }
 
 .hamburger {
@@ -126,8 +127,9 @@ button {
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
   z-index: 40;
   transition: left 0.3s ease;
-  padding-top: 60px;
+  padding-top: 80px;
   display: flex;
+  border-radius: 0px 15px 15px 0px;
   flex-direction: column;
 }
 
@@ -137,9 +139,10 @@ button {
 
 .mobile-menu-item {
   text-align: left;
-  padding: 16px 20px;
+  padding: 16px 28px;
   background: none;
-  border-radius: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
   border-bottom: 1px solid #f1f2f6;
 }
 
@@ -204,6 +207,7 @@ button {
 
 .sort-filter {
   position: relative;
+  border-radius: 80px;
 }
 
 .filter-btn {
@@ -225,9 +229,10 @@ button {
   width: 180px;
   background-color: white;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 15px;
   z-index: 10;
   margin-top: 5px;
+  animation: slideDown 0.3s ease;
 }
 
 .sort-dropdown button {
@@ -245,18 +250,25 @@ button {
 
 /* Search bar */
 .search-bar {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-bar ::placeholder {
+  color: #43474e;
 }
 
 .search-bar input {
   flex: 1;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 12px 20px;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-radius: 80px;
   font-size: 16px;
+  outline: none;
+  background-color: #e9e7ec;
 }
 
 .active-filter {
@@ -365,7 +377,7 @@ button {
 .task-expanded {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 1px dashed #ecf0f1;
+  border-top: 1px solid #989b9e;
   animation: slideDown 0.3s ease;
 }
 
@@ -464,7 +476,6 @@ button {
   cursor: pointer;
 }
 
-
 .main-fab:hover {
   background-color: #D2D2DA;
 }
@@ -544,6 +555,7 @@ button {
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+  animation: popIn 0.2s ease;
 }
 
 .modal-header {
@@ -714,7 +726,35 @@ button {
   background-color: #e74c3c;
 }
 
+/* Header layout styles */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.desktop-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.mobile-search {
+  display: none;
+  margin-bottom: 0px;
+}
+
 /* Animations */
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes popOut {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.9); opacity: 0; }
+}
+
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -732,15 +772,29 @@ button {
   }
 
   .app-header {
-    position: relative;
-    justify-content: center;
+    padding: 15px 10px;
   }
 
-  .app-header h1 {
-    margin: 0 auto;
+  .header-left {
+    flex: 1;
+  }
+
+  .desktop-title {
+    display: none;
+  }
+
+  /* Show the search bar in the header on mobile */
+  .mobile-search {
+    display: flex;
+    flex: 1;
   }
 
   .header-buttons {
+    display: none;
+  }
+
+  /* Hide the standalone search bar on mobile */
+  .app-container > .search-bar:not(.mobile-search) {
     display: none;
   }
 
@@ -748,11 +802,6 @@ button {
   .controls {
     flex-direction: column;
     gap: 15px;
-  }
-
-  .search-bar {
-    flex-direction: column;
-    align-items: stretch;
   }
 
   .view-slider-container {
