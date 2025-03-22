@@ -122,7 +122,7 @@ button {
   top: 0;
   left: -250px;
   width: 250px;
-  height: 100vh;
+  height: 100%;
   background-color: white;
   box-shadow: 2px 0 10px rgba(0,0,0,0.1);
   z-index: 40;
@@ -261,13 +261,15 @@ button {
 }
 
 .search-bar input {
-  flex: 1;
+  flex: auto;
   padding: 12px 20px;
   font-family: 'Poppins', sans-serif;
   border: none;
   border-radius: 80px;
   font-size: 16px;
   outline: none;
+  width: 100%;
+  max-width: 100%;
   background-color: #e9e7ec;
 }
 
@@ -771,6 +773,12 @@ button {
     display: block;
   }
 
+  .app-container {
+    padding: 15px 10px;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
   .app-header {
     padding: 15px 10px;
   }
@@ -787,6 +795,7 @@ button {
   .mobile-search {
     display: flex;
     flex: 1;
+    max-width: calc(100vw - 70px);
   }
 
   .header-buttons {
