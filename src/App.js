@@ -6,7 +6,6 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [relations, setRelations] = useState([]);
 
-  // UI states
   const [viewMode, setViewMode] = useState('in-progress');
   const [sortCriteria, setSortCriteria] = useState('date_echeance');
   const [searchTerm, setSearchTerm] = useState('');

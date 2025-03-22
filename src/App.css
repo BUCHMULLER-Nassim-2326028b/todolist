@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* General styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,14 +24,12 @@ button {
   transition: all 0.2s ease;
 }
 
-/* App container */
 .app-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 15px;
 }
 
-/* Header styles */
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -63,7 +60,6 @@ button {
   background-color: #c0392b;
 }
 
-/* Mobile menu styles */
 .mobile-menu-button {
   display: none;
   z-index: 50;
@@ -177,7 +173,6 @@ button {
   margin-bottom: 20px;
 }
 
-/* Slider animation for view controls */
 .view-controls {
   display: flex;
   gap: 10px;
@@ -267,7 +262,6 @@ button {
   background-color: #f5f7fa;
 }
 
-/* Search bar */
 .search-bar {
   display: flex;
   align-items: center;
@@ -313,7 +307,6 @@ button {
   margin-bottom: 80px;
 }
 
-/* Task card new styles */
 .task-card {
   display: flex;
   align-items: flex-start;
@@ -474,7 +467,7 @@ button {
 }
 
 .main-fab.open .plus-icon {
-  font-size: 32px; /* Keep the icon size */
+  font-size: 32px;
 }
 
 .main-fab {
@@ -549,7 +542,6 @@ button {
   transform: translateX(0);
 }
 
-/* Modal styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -616,7 +608,6 @@ button {
   border-bottom: 2px solid #3498db;
 }
 
-/* Form styles */
 .task-form,
 .category-form {
   padding: 20px;
@@ -745,7 +736,6 @@ button {
   background-color: #e74c3c;
 }
 
-/* Header layout styles */
 .header-left {
   display: flex;
   align-items: center;
@@ -763,7 +753,6 @@ button {
   margin-bottom: 0px;
 }
 
-/* Animations */
 @keyframes popIn {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
@@ -784,7 +773,6 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Media queries for responsive design */
 @media screen and (max-width: 660px) {
   .mobile-menu-button {
     display: block;
@@ -808,7 +796,6 @@ button {
     display: none;
   }
 
-  /* Show the search bar in the header on mobile */
   .mobile-search {
     display: flex;
     flex: 1;
@@ -819,12 +806,10 @@ button {
     display: none;
   }
 
-  /* Hide the standalone search bar on mobile */
   .app-container > .search-bar:not(.mobile-search) {
     display: none;
   }
 
-  /* Adjust other layouts for small screens */
   .controls {
     flex-direction: column;
     gap: 15px;
