@@ -311,12 +311,12 @@ button {
 .task-card {
   display: flex;
   align-items: flex-start;
-  background-color: #DCE2F8;
+  background-color: #ecf3fb;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 12px;
   margin-bottom: 16px;
   transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
 }
 
 .task-card.urgent {
@@ -440,6 +440,7 @@ button {
   text-align: center;
   padding: 50px 0;
   color: #7f8c8d;
+  animation: slideIn 0.3s ease;
 }
 
 .fab-container {
@@ -763,6 +764,12 @@ button {
   from { transform: scale(1); opacity: 1; }
   to { transform: scale(0.9); opacity: 0; }
 }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-10px); }

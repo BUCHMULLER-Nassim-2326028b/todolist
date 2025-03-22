@@ -136,14 +136,14 @@ function App() {
       filtered = filtered.filter(task => !task.done);
     } else if (viewMode === 'completed') {
       filtered = filtered.filter(task => task.done);
+    } else {
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      filtered = filtered.filter(task => {
+        const creationDate = new Date(task.date_creation);
+        return creationDate > oneWeekAgo || !task.done;
+      });
     }
-
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-    filtered = filtered.filter(task => {
-      const creationDate = new Date(task.date_creation);
-      return creationDate > oneWeekAgo || !task.done;
-    });
 
     if (categoryFilter) {
       const taskIdsWithCategory = relations
@@ -152,6 +152,7 @@ function App() {
 
       filtered = filtered.filter(task => taskIdsWithCategory.includes(task.id));
     }
+
 
     if (searchTerm.length >= 3) {
       filtered = filtered.filter(task =>
@@ -188,7 +189,7 @@ function App() {
     e.preventDefault();
 
     if (newTask.title.length < 5) {
-      alert("Le titre doit contenir au moins 5 caractères");
+      alert("Veuillez saisir 5 caractères ou plus");
       return;
     }
 
@@ -231,7 +232,7 @@ function App() {
     e.preventDefault();
 
     if (newCategory.title.length < 3) {
-      alert("Le titre de la catégorie doit contenir au moins 3 caractères");
+      alert("Veuillez saisir 3 caractères ou plus");
       return;
     }
 
@@ -262,14 +263,14 @@ function App() {
   };
 
   const deleteTask = (taskId) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche?')) {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette tâche ?')) {
       setTasks(tasks.filter(task => task.id !== taskId));
       setRelations(relations.filter(rel => rel.tache !== taskId));
     }
   };
 
   const resetApp = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir remettre à zéro l\'application?')) {
+    if (window.confirm('Souhaitez vous réinitialiser l\'application ?')) {
       setTasks([]);
       setCategories([]);
       setRelations([]);
