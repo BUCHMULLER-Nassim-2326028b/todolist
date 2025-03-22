@@ -298,10 +298,10 @@ function App() {
   const fileInputRef = useRef(null);
 
   return (
-  <div className="app-container">
-    <header className="app-header">
-      <div className="header-left">
-        <div className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+      <div className="app-container">
+        <header className="app-header">
+          <div className="header-left">
+            <div className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <div className={`hamburger ${mobileMenuOpen ? 'open' : ''}`}>
                 <span></span>
                 <span></span>
@@ -309,44 +309,47 @@ function App() {
               </div>
             </div>
 
-              <div className="search-bar mobile-search">
-                <input
-                    type="text"
-                    placeholder="Rechercher..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-
-                {categoryFilter && (
-                    <div className="active-filter">
-                      <span>{categories.find(cat => cat.id === categoryFilter)?.title}</span>
-                      <button onClick={() => setCategoryFilter(null)}>×</button>
-                    </div>
-                )}
-              </div>
-            </div>
-
-            <h1 className="desktop-title">ToDo List</h1>
-
-            <div className="header-buttons">
-              <button onClick={() => fileInputRef.current.click()}>Importer</button>
-              <button onClick={exportData}>Exporter</button>
-              <button className="reset-btn" onClick={resetApp}>Reset</button>
+            <div className="search-bar mobile-search">
               <input
-                  type="file"
-                  ref={fileInputRef}
-                  style={{display: 'none'}}
-                  accept=".json"
-                  onChange={importData}
+                  type="text"
+                  placeholder="Rechercher..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
               />
+
+              {categoryFilter && (
+                  <div className="active-filter">
+                    <span>{categories.find(cat => cat.id === categoryFilter)?.title}</span>
+                    <button onClick={() => setCategoryFilter(null)}>×</button>
+                  </div>
+              )}
             </div>
+          </div>
+
+          <h1 className="desktop-title">ToDo List</h1>
+
+          <div className="header-buttons">
+            <button onClick={() => fileInputRef.current.click()}>Importer</button>
+            <button onClick={exportData}>Exporter</button>
+            <button className="reset-btn" onClick={resetApp}>Réinitialiser</button>
+            <input
+                type="file"
+                ref={fileInputRef}
+                style={{display: 'none'}}
+                accept=".json"
+                onChange={importData}
+            />
+          </div>
         </header>
 
-
+        <div
+            className={`mobile-menu-overlay ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(false)}>
+        </div>
         <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
           <button className="mobile-menu-item" onClick={() => fileInputRef.current.click()}>Importer</button>
           <button className="mobile-menu-item" onClick={exportData}>Exporter</button>
-          <button className="mobile-menu-item" onClick={resetApp}>Reset</button>
+          <button className="mobile-menu-item" onClick={resetApp}>Réinitialiser</button>
         </div>
 
         <div className="controls">
@@ -557,7 +560,9 @@ function App() {
                     const modal = document.querySelector('.modal');
                     modal.style.animation = 'popOut 0.2s ease forwards';
                     setTimeout(() => setShowModal(false), 200);
-                  }}>×</button></div>
+                  }}>×
+                  </button>
+                </div>
 
                 {modalType === 'task' ? (
                     <form className="task-form" onSubmit={handleCreateTask}>

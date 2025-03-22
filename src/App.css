@@ -70,6 +70,12 @@ button {
   align-content: center;
 }
 
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .hamburger {
   width: 24px;
   height: 20px;
@@ -131,6 +137,19 @@ button {
   display: flex;
   border-radius: 0px 15px 15px 0px;
   flex-direction: column;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .mobile-menu.open {
@@ -239,7 +258,7 @@ button {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 10px 15px;
+  padding: 12px 15px;
   background: none;
   border-radius: 0;
 }
@@ -288,12 +307,10 @@ button {
   font-size: 16px;
 }
 
-/* Tasks container */
 .tasks-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-bottom: 80px; /* Space for the add button */
+  margin-bottom: 80px;
 }
 
 /* Task card new styles */
@@ -434,7 +451,7 @@ button {
 .fab-container {
   position: fixed;
   bottom: 30px;
-  right: 30px;
+  right: 22px;
   z-index: 10;
   display: flex;
   flex-direction: column-reverse;
@@ -732,7 +749,7 @@ button {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .desktop-title {
@@ -768,7 +785,7 @@ button {
 }
 
 /* Media queries for responsive design */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 660px) {
   .mobile-menu-button {
     display: block;
   }
