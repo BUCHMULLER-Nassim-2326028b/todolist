@@ -60,7 +60,7 @@ function App() {
     icon: ''
   });
 
-  const availableColors = ['blue', 'green', 'red', 'orange', 'pink', 'purple', 'skyblue'];
+  const couleursDispo = ['blue', 'green', 'red', 'orange', 'pink', 'purple', 'skyblue'];
 
   const toggleTaskExpansion = (taskId) => {
     setExpandedTasks(prev => ({
@@ -640,7 +640,7 @@ function App() {
                       <div className="form-group">
                         <label>Couleur</label>
                         <div className="color-selection">
-                          {availableColors.map(color => (
+                          {couleursDispo.map(color => (
                               <div
                                   key={color}
                                   className={`color-option ${newCategory.color === color ? 'selected' : ''}`}
