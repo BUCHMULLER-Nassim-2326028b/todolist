@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google Sans:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Google+Sans:100,300,400,500,700,900,100i,300i,400i,500i,700i,900i');
 
 * {
   box-sizing: border-box;
+  font-family: 'Google Sans', 'Segoe UI', 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
   background-color: #FAF9FE;
   color: #333;
   line-height: 1.6;
@@ -25,7 +26,7 @@ button {
 }
 
 .app-container {
-  max-width: 800px;
+  max-width: 75%;
   margin: 0 auto;
   padding: 15px;
 }
@@ -157,7 +158,6 @@ button {
   padding: 16px 28px;
   background: none;
   border-radius: 0px;
-  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   border-bottom: 1px solid #f1f2f6;
 }
@@ -277,7 +277,6 @@ button {
 .search-bar input {
   flex: auto;
   padding: 12px 20px;
-  font-family: 'Poppins', sans-serif;
   border: none;
   border-radius: 80px;
   font-size: 16px;
@@ -457,6 +456,7 @@ button {
   font-size: 32px;
   font-weight: normal;
   display: inline-block;
+  font-family: 'Roboto', sans-serif;
   transition: transform 0.3s ease;
 }
 
@@ -476,7 +476,6 @@ button {
   border-radius: 18px;
   background-color: #dce2f8;
   color: #1B1A1F;
-  font-family: 'Roboto', sans-serif;
   font-size: 16px;
   display: flex;
   font-weight: 500;
@@ -633,7 +632,7 @@ button {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 16px;
 }
 
@@ -781,12 +780,13 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 680px) {
   .mobile-menu-button {
     display: block;
   }
 
   .app-container {
+    max-width: 100%;
     padding: 15px 10px;
     width: 100%;
     overflow-x: hidden;

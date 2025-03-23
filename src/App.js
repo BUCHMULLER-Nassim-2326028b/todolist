@@ -60,7 +60,7 @@ function App() {
     icon: ''
   });
 
-  const availableColors = ['blue', 'green', 'red', 'orange', 'pink', 'purple', 'bluesky'];
+  const availableColors = ['blue', 'green', 'red', 'orange', 'pink', 'purple', 'skyblue'];
 
   const toggleTaskExpansion = (taskId) => {
     setExpandedTasks(prev => ({
@@ -129,7 +129,7 @@ function App() {
     event.target.value = '';
   };
 
-  const getFilteredAndSortedTasks = () => {
+  const getFilteredTasks = () => {
     let filtered = [...tasks];
 
     if (viewMode === 'in-progress') {
@@ -205,8 +205,7 @@ function App() {
       urgent: newTask.urgent,
       contacts: newTask.contacts || []
     };
-
-    // Create relations for selected categories
+    
     const newRelations = newTask.categories.map(categoryId => ({
       tache: taskId,
       categorie: categoryId
@@ -279,7 +278,7 @@ function App() {
     }
   };
 
-  const toggleCategoryInNewTask = (categoryId) => {
+  const toggleCategory = (categoryId) => {
     setNewTask(prev => {
       if (prev.categories.includes(categoryId)) {
         return {
@@ -429,8 +428,8 @@ function App() {
         </div>
 
         <div className="tasks-container">
-          {getFilteredAndSortedTasks().length > 0 ? (
-              getFilteredAndSortedTasks().map(task => (
+          {getFilteredTasks().length > 0 ? (
+              getFilteredTasks().map(task => (
                   <div
                       key={task.id}
                       className={`task-card ${task.urgent ? 'urgent' : ''} ${task.done ? 'completed' : ''}`}
@@ -609,7 +608,7 @@ function App() {
                                   key={category.id}
                                   className={`category-option ${newTask.categories.includes(category.id) ? 'selected' : ''}`}
                                   style={{backgroundColor: category.color}}
-                                  onClick={() => toggleCategoryInNewTask(category.id)}
+                                  onClick={() => toggleCategory(category.id)}
                               >
                                 {category.icon} {category.title}
                               </div>
